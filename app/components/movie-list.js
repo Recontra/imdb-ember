@@ -13,6 +13,21 @@ export default Ember.Component.extend({
     },
     searchMovies: function() {
       this.sendAction('searchMovies');
+    },
+    sort: function(sortColumn) {
+      var lastSort = this.get('sort'),
+          lastDirection = this.get('direction'),
+          newDirection;
+
+      if (sortColumn === lastSort) {
+        newDirection = lastDirection === 'desc' ? 'asc' : 'desc';
+      } else {
+        newDirection = 'asc';
+      }
+
+      this.set('sort', sortColumn);
+      this.set('direction', newDirection);
+      this.sendAction('searchMovies');
     }
   }
 });

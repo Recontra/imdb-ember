@@ -1,13 +1,47 @@
-<h2>SEARCH</h2>
-Title: {{input value=titleParam}}
-Director: {{input value=directorParam}}
-Actor: {{input value=actorParam}}
-Rating from {{input value=ratingFromParam}} to {{input value=ratingToParam}}
+<form class="form-inline">
+  <div class="form-group">
+    {{input value=titleParam class="form-control"}}
+    <span class="help-block">Title</span>
+  </div>
+  <div class="form-group">
+    {{input value=directorParam class="form-control"}}
+    <span class="help-block">Director</span>
+  </div>
+  <div class="form-group">
+    {{input value=actorParam class="form-control"}}
+    <span class="help-block">Actor</span>
+  </div>
+  <div class="form-group">
+    {{input value=ratingFromParam class="form-control"}}
+    <span class="help-block">Rating from</span>
+  </div>
+  <div class="form-group">
+    {{input value=ratingToParam class="form-control"}}
+    <span class="help-block">Rating to</span>
+  </div>
+  <br>
+  <button {{action 'searchMovies'}} type="submit" class="btn btn-primary">Search</button>
+  <button {{action 'resetMovies'}} class="btn btn-danger">Reset</button>
+</form>
+<br><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th {{action "sort" "title"}}>Title</th>
+      <th {{action "sort" "year"}}>Year</th>
+      <th {{action "sort" "rating"}}>Rating (votes)</th>
+      <th>Director</th>
+      <th>Cast members</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each movies as |movie|}}
+      {{movie-line movie=movie}}
+    {{/each}}
+  </tbody>
+</table>
 
-<button {{action 'searchMovies'}}>Search</button>
-<button {{action 'resetMovies'}}>Reset</button>
+{{page-numbers content=movies showFL=true}}
 
-{{#each movies as |movie|}}
-  {{movie-line movie=movie}}
-{{/each}}
-{{page-numbers content=movies}}
+

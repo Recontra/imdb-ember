@@ -1,0 +1,34 @@
+<h3>Add new movie from IMDB</h3>
+Type move title and we will automatically serach for movie and add first<br><br>
+<form class="form-inline">
+  <div class="form-group">
+    <label>Movie title</label>
+    {{input value=title class="form-control"}}
+  </div>
+  <button {{action "createMovie" title}} type="submit" class="btn btn-primary" disabled={{loading}}>{{buttonText}}</button>
+</form>
+<br>
+{{message}}
+<br>
+{{#if editing}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th {{action "sort" "title"}}>Title</th>
+        <th {{action "sort" "year"}}>Year</th>
+        <th {{action "sort" "rating"}}>Rating (votes)</th>
+        <th>Director</th>
+        <th>Cast members</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{movie-line movie=movie}}
+    </tbody>
+  </table>
+
+  <button {{action "deleteMovie" movie}} type="submit" class="btn btn-default">Remove</button>
+{{/if}}
+
+
+

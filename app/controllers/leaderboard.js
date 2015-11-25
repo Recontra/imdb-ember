@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     // setup our query params
-  queryParams: ["page", "perPage", "title", "actor", "director", "rating_from", "rating_to"],
+  queryParams: ["page", "perPage", "title", "actor", "director", "rating_from", "rating_to", "sort_by", "sort", "direction"],
 
   // set default values, can cause problems if left out
   // if value matches default, it won't display in the URL
@@ -12,5 +12,7 @@ export default Ember.Controller.extend({
   actor: "",
   director: "",
   rating_from: "",
-  rating_to: ""
+  rating_to: "",
+  sort: "rating",
+  direction: "desc"
 });

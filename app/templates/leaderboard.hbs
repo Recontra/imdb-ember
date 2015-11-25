@@ -1,8 +1,12 @@
-<h1>Leaderboard</h1>
-{{movie-list movies=model
-            titleParam=title
-            actorParam=actor
-            directorParam=director
-            ratingFromParam=rating_from
-            ratingToParam=rating_to
-            searchMovies='searchMovies'}}
+<div class="container">
+  <h1>IMDB Leaderboard {{#link-to 'movies.new'  class="btn btn-primary pull-right"}}Add new movie{{/link-to}}</h1>
+  {{movie-list movies=model
+                titleParam=title
+                actorParam=actor
+                directorParam=director
+                ratingFromParam=rating_from
+                ratingToParam=rating_to
+                sort=sort
+                direction=direction
+                searchMovies='searchMovies'}}
+</div>
