@@ -1,0 +1,13 @@
+<h2>SEARCH</h2>
+Title: {{input value=titleParam}}
+Director: {{input value=directorParam}}
+Actor: {{input value=actorParam}}
+Rating from {{input value=ratingFromParam}} to {{input value=ratingToParam}}
+
+<button {{action 'searchMovies'}}>Search</button>
+<button {{action 'resetMovies'}}>Reset</button>
+
+{{#each movies as |movie|}}
+  {{movie-line movie=movie}}
+{{/each}}
+{{page-numbers content=movies}}
