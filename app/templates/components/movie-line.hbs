@@ -4,4 +4,8 @@
 <td>{{movie.rating}} ({{movie.votes}})</td>
 <td>{{movie.director}}</td>
 <td>{{movie.castShort}}</td>
-
+<td>
+  {{#unless hideEditButton }}
+    {{#link-to 'movies.edit' movie.id}}Edit{{/link-to}}
+  {{/unless}}
+</td>

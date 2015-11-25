@@ -5,14 +5,16 @@ export default Ember.Component.extend({
   mesage: "",
   loading: false,
   editing: Ember.computed('movie.imdbId', function() {
-    if (typeof(this.get('movie.imdbId')) === 'undefined')
+    if (typeof(this.get('movie.imdbId')) === 'undefined') {
       return false;
+    }
 
     return true;
   }),
   buttonText: Ember.computed('movie.imdbId', function() {
-    if (typeof(this.get('movie.imdbId')) === 'undefined')
+    if (typeof(this.get('movie.imdbId')) === 'undefined') {
       return "Add";
+    }
 
     return "Change";
   }),
@@ -22,16 +24,24 @@ export default Ember.Component.extend({
           movie = this.get('movie');
       this.set('loading', true);
       movie.set('title', title);
-      movie.save().then(function(result) {
+      movie.save().then(function() {
         self.set('title', null);
-        self.set('message', "Movie was found and added to list. You can change it or delete it")
-        this.set('loading', true);
-      }, function(error) {
-        console.log(movie.error);
-        self.set('message', error.message);
-        this.set('loading', true);
+        self.set('message', "Movie was found and added to list. You can change it or delete it");
+        self.set('loading', false);
+      }, function() {
+        self.set('message', "Movie was was not added");
+        self.set('loading', false);
       });
+    },
+    deleteMovie: function(movie) {
+      var self = this,
+          movie = this.get('movie');
 
+      movie.destroyRecord().then(function() {
+        self.sendAction('redirect');
+      },function() {
+        self.set('message', "Movie was was not deleted");
+      });
     }
   }
 });

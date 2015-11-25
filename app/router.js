@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('leaderboard');
   this.route('movies', function() {
     this.route('new');
+    this.route('edit', {path: ':movie_id/edit'});
   });
 });
 
