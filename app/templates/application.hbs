@@ -4,6 +4,15 @@
     <div class="navbar-header">
       {{#link-to 'leaderboard' class="navbar-brand"}}Ember/Rails IMDB movies{{/link-to}}
     </div>
+    <ul class="nav navbar-nav navbar-right">
+      {{#if session.isAuthenticated}}
+        <li>{{#link-to 'leaderboard' class="navbar-brand"}}{{userEmail}}{{/link-to}}</li>
+        <li><a {{action 'invalidateSession'}}  class="navbar-brand">Logout</a></li>
+      {{else}}
+        <li>{{#link-to 'login' class="navbar-brand"}}Login{{/link-to}}</li>
+        <li>{{#link-to 'register' class="navbar-brand"}}Register{{/link-to}}</li>
+      {{/if}}
+    </ul>
   </div><!-- /.container-fluid -->
 </nav>
 {{outlet}}

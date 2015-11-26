@@ -11,6 +11,8 @@ Router.map(function() {
     this.route('new');
     this.route('edit', {path: ':movie_id/edit'});
   });
+  this.route('login');
+  this.route('register');
 });
 
 export default Router;
